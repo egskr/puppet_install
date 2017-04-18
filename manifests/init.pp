@@ -1,3 +1,10 @@
 class puppet_install {
-  include ::puppet_install::test
+
+  if $::definition {
+    include puppet_install::master_inst
+  }
+  else {
+    include puppet_install::agent_inst
+   }
+
 }
