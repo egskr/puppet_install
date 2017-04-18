@@ -15,7 +15,7 @@ class puppet_install::agent_inst {
 
   yumrepo { 'puppet_repo':
     ensure   => 'present',
-    baseurl  => "http://yum.puppetlabs.com/el/7/PC1/$basearch",
+    baseurl  => "https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm",
     gpgkey   => "https://yum.puppetlabs.com/RPM-GPG-KEY-puppet https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs",
     enabled  => '1',
     gpgcheck => '1'
