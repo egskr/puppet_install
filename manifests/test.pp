@@ -6,11 +6,15 @@ exec { 'install_repo':
     path        => '/bin/',
 }
 
-
-
 package { 'puppetserver':
     ensure  => installed,
     require => Exec['install_repo'],
+}
+
+service { 'puppetserver':
+    ensure => running,
+   # enable => true,
+    require => Package['puppetserver'],
 }
 
   notify { "###### MISSION COMPLETE ######" :}          
