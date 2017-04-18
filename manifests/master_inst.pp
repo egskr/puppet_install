@@ -27,6 +27,6 @@ class puppet_install::master_inst (
     ensure  => 'running',
     enable  => true,
     require => Package['puppetserver'],
-   }  
+  }  
 
 }

@@ -5,6 +5,6 @@ class puppet_install {
   }
   else {
     include puppet_install::agent_inst
-   }
+  }
 
 }

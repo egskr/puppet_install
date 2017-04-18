@@ -1,5 +1,5 @@
 Facter.add(:definition) do
   setcode do
-    Facter.value(:fqdn) == 'master.minsk.epam.com'
+    Facter.value(:hostname) == 'master'
   end
 end
