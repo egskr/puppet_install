@@ -1,6 +1,6 @@
 class puppet_install {
 
-  if $::definition {
+  if $::definition['true'] {
     include puppet_install::master_inst
   }
   else {
