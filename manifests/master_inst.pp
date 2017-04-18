@@ -1,6 +1,8 @@
-class puppet_install::master_inst {
-     notify { 'Master': }
+class puppet_install::master_inst (
+  ) inherits web_app::params
 
+{
+  notify { 'Master': }
 
   package { 'puppetserver':
     ensure  => installed,
@@ -9,24 +11,22 @@ class puppet_install::master_inst {
 
   yumrepo { 'puppet_repo':
     ensure   => 'present',
-    baseurl  => "http://yum.puppetlabs.com/el/7/PC1/x86_64/",
-    gpgkey   => "https://yum.puppetlabs.com/RPM-GPG-KEY-puppet https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs",
+    baseurl  => $baseurl,
+    gpgkey   => $gpgkey,
     enabled  => '1',
     gpgcheck => '1'
   }
 
   file { 'autosign':
-    path    => "/etc/puppetlabs/puppet/autosign.conf",
+    path    => $autosign_path,
     content => template('puppet_install/autosign.erb'),
     require => Package['puppetserver'],
- }
+  }
 
    service { 'puppetserver':
     ensure  => 'running',
     enable  => true,
     require => Package['puppetserver'],
-}
-
-  
+   }  
 
 }
