@@ -14,7 +14,7 @@ class puppet_install::master_inst (
     baseurl  => "$baseurl",
     gpgkey   => "$gpgkey",
     enabled  => '1',
-    gpgcheck => '1'
+    gpgcheck => '1',
   }
 
   file { 'autosign':

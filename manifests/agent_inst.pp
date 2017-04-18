@@ -14,7 +14,7 @@ class puppet_install::agent_inst  (
     baseurl  =>  "$baseurl",
     gpgkey   =>  "$gpgkey",
     enabled  => '1',
-    gpgcheck => '1'
+    gpgcheck => '1',
   }
 
   service { 'puppet':
