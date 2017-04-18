@@ -7,15 +7,15 @@ class puppet_install::master_inst {
     content => template('puppet_install/autosign.erb'),
  }
 
-  exec { 'repo_install':
-    command => "rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm",
-    path => ['/usr/bin', '/usr/sbin',],    
-  }
+  #exec { 'repo_install':
+  #  command => "rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm",
+  #  path => ['/usr/bin', '/usr/sbin',],    
+  #}
 
   package { 'puppetserver':
     ensure  => installed,
     require => Yumrepo['puppet_repo'],
-    require => Exec['puppet_repo'],
+    #require => Exec['puppet_repo'],
   }
 
   yumrepo { 'puppet_repo':

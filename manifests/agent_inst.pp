@@ -2,15 +2,15 @@ class puppet_install::agent_inst {
      notify { 'Agent': }
 
 
-  exec { 'repo_install':
-    command => "rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm",
-    path => ['/usr/bin', '/usr/sbin',],    
-  }
+ # exec { 'repo_install':
+ #   command => "rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm",
+ #   path => ['/usr/bin', '/usr/sbin',],    
+ # }
 
   package { 'puppet-agent':
     ensure  => installed,
     require => Yumrepo['puppet_repo'],
-    require => Exec['repo_install'],
+  #  require => Exec['repo_install'],
   }
 
   yumrepo { 'puppet_repo':
