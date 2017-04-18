@@ -1,7 +1,7 @@
 class puppet_install::agent_inst  (
-   ) inherits puppet_install::params
+  ) inherits puppet_install::params
 
- {
+  {
   notify { 'Agent': }
 
   package { 'puppet-agent':
@@ -11,17 +11,17 @@ class puppet_install::agent_inst  (
 
   yumrepo { 'puppet_repo':
     ensure   => 'present',
-    baseurl  => $baseurl,
-    gpgkey   => $gpgkey,
+    baseurl  =>  "$baseurl",
+    gpgkey   =>  "$gpgkey",
     enabled  => '1',
     gpgcheck => '1'
   }
 
-   service { 'puppet':
+  service { 'puppet':
     ensure  => 'running',
     enable  => true,
     require => Package['puppet-agent'],
-   }
+  }
   
 }
 

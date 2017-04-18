@@ -11,19 +11,19 @@ class puppet_install::master_inst (
 
   yumrepo { 'puppet_repo':
     ensure   => 'present',
-    baseurl  => $baseurl,
-    gpgkey   => $gpgkey,
+    baseurl  => "$baseurl",
+    gpgkey   => "$gpgkey",
     enabled  => '1',
     gpgcheck => '1'
   }
 
   file { 'autosign':
-    path    => $autosign_path,
+    path    => "$autosign_path",
     content => template('puppet_install/autosign.erb'),
     require => Package['puppetserver'],
   }
 
-   service { 'puppetserver':
+  service { 'puppetserver':
     ensure  => 'running',
     enable  => true,
     require => Package['puppetserver'],
