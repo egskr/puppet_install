@@ -1,5 +1,5 @@
 class puppet_install::master_inst (
-  ) inherits web_app::params
+  ) inherits puppet_install::params
 
 {
   notify { 'Master': }
