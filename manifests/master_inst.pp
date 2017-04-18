@@ -2,15 +2,9 @@ class puppet_install::master_inst {
      notify { 'Master': }
 
 
-   #exec { 'repo_install':
-  #  command => "rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm",
-  #  path => ['/usr/bin', '/usr/sbin',],    
-  #}
-
   package { 'puppetserver':
     ensure  => installed,
     require => Yumrepo['puppet_repo'],
-    #require => Exec['puppet_repo'],
   }
 
   yumrepo { 'puppet_repo':
