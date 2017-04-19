@@ -17,10 +17,8 @@ class puppet_install::agent_inst
   }
 
   exec {'puppet_conf':
-    command => 'echo "server = master" >> /etc/puppetlabs/puppet/puppet.conf',
-    path => ['/usr/bin', '/usr/sbin',],
-    subscribe => Package['puppet-agent'],
-    refreshonly => true,
+    command => 'echo "server = master.loc" >> /etc/puppetlabs/puppet/puppet.conf',
+    path => ['/usr/bin', '/usr/sbin',],    
   }
 
   service { 'puppet':
