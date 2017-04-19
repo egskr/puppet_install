@@ -1,5 +1,4 @@
-class puppet_install::master_inst (
-  ) inherits puppet_install::params
+class puppet_install::master_inst 
 
 {
   notify { 'Master': }
@@ -18,7 +17,7 @@ class puppet_install::master_inst (
   }
 
   file { 'autosign':
-    path    => "$autosign_path",
+    path    => $::puppet_install::autosign_path,
     content => template('puppet_install/autosign.erb'),
     require => Package['puppetserver'],
   }

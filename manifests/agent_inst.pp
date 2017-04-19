@@ -1,5 +1,4 @@
 class puppet_install::agent_inst  (
-  ) inherits puppet_install::params
 
   {
   notify { 'Agent': }
