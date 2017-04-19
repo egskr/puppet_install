@@ -9,7 +9,11 @@ class puppet_install::lighttpd
   file { '/var/www/lighttpd/index.html':
    ensure  => file,
    content => template('puppet_install/index.erb'),
-  # notify  => Service['lighttpd']
+   owner   => root,
+   group   => root,
+   mode    => '0644',
+   backup  => false,
+   notify  => Service['lighttpd']
  }
 
 
