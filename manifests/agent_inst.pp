@@ -1,4 +1,4 @@
-class puppet_install::agent_inst  (
+class puppet_install::agent_inst 
 
   {
   notify { 'Agent': }
@@ -16,14 +16,22 @@ class puppet_install::agent_inst  (
     gpgcheck => '1',
   }
 
+  exec {'puppet_conf':
+    command => 'echo "server = master" >> /etc/puppetlabs/puppet/puppet.conf',
+    path => ['/usr/bin', '/usr/sbin',],
+    subscribe => Package['puppet-agent'],
+    refreshonly => true,
+  }
+
   service { 'puppet':
     ensure  => 'running',
     enable  => true,
-    require => Package['puppet-agent'],
-
- include puppet_install::lighttpd
+    require => Exec['puppet_conf'],
   }
- 
+
+  include puppet_install::lighttpd
+
+   
   
 }
 
