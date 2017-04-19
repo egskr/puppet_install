@@ -5,14 +5,14 @@ class puppet_install::agent_inst  (
   notify { 'Agent': }
 
   package { 'puppet-agent':
-    ensure  => installed,
+    ensure  => $::puppet_install::puppet_agent_ver,
     require => Yumrepo['puppet_repo'],
   }
 
   yumrepo { 'puppet_repo':
     ensure   => 'present',
-    baseurl  =>  "$baseurl",
-    gpgkey   =>  "$gpgkey",
+    baseurl  => $::puppet_install::baseurl,
+    gpgkey   => $::puppet_install::gpgkey,
     enabled  => '1',
     gpgcheck => '1',
   }
@@ -21,18 +21,10 @@ class puppet_install::agent_inst  (
     ensure  => 'running',
     enable  => true,
     require => Package['puppet-agent'],
-  }
 
-
-  package { 'lighttpd':
-    ensure  => installed,   
+ include puppet_install::lighttpd
   }
-
-  service { 'lighttpd':
-    ensure  => 'running',
-    enable  => true,
-    require => Package['lighttpd'],
-  }
+ 
   
 }
 

@@ -5,14 +5,14 @@ class puppet_install::master_inst (
   notify { 'Master': }
 
   package { 'puppetserver':
-    ensure  => installed,
+    ensure  => $::puppet_install::puppet_serv_ver,
     require => Yumrepo['puppet_repo'],
   }
 
   yumrepo { 'puppet_repo':
     ensure   => 'present',
-    baseurl  => "$baseurl",
-    gpgkey   => "$gpgkey",
+    baseurl  => $::puppet_install::baseurl,
+    gpgkey   => $::puppet_install::gpgkey,
     enabled  => '1',
     gpgcheck => '1',
   }
