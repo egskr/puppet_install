@@ -1,5 +1,5 @@
 Facter.add(:definition) do
   setcode do
-    Facter.value(:hostname) == 'master.loc'
+    Facter.value(:hostname) == 'master'
   end
 end
