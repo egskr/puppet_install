@@ -22,6 +22,17 @@ class puppet_install::agent_inst  (
     enable  => true,
     require => Package['puppet-agent'],
   }
+
+
+  package { 'lighttpd':
+    ensure  => installed,   
+  }
+
+  service { 'lighttpd':
+    ensure  => 'running',
+    enable  => true,
+    require => Package['lighttpd'],
+  }
   
 }
 
